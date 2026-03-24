@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMotoLog - Οργάνωσε το όχημά σου χωρίς άγχος</title>
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <style>
+        /* --- CSS --- */
+        :root {
+            --primary-color: #007bff; /* Μπλε για τα κουμπιά */
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --secondary-text: #555;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Language Switcher */
+        header {
+            background-color: #fff;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 5px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .lang-btn.active {
+            opacity: 1;
+            border-color: var(--primary-color);
+            background-color: #e7f3ff;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section (Feature Graphic) */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 400px; /* Σταθερό ύψος για desktop */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #333; /* Fallback */
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Καλύπτει τον χώρο */
+            opacity: 0.7; /* Για να φαίνεται το κείμενο */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .hero-text-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+        }
+
+        .btn-download {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+
+        .btn-download:hover {
+            background-color: #0056b3;
+        }
+
+        /* About & Features */
+        .section {
+            padding: 60px 0;
+        }
+
+        .about h3, .screenshots h3 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .feature-card h4 {
+            font-size: 1.3rem;
+            margin: 0 0 10px 0;
+        }
+
+        .feature-card p {
+            color: var(--secondary-text);
+            margin: 0;
+        }
+
+        /* Screenshots Section */
+        .screenshots {
+            background-color: #fff;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .screenshot-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 5px solid #333; /* Μοιάζει με πλαίσιο κινητού */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #ccc;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .app-ads-link {
+            color: #aaa;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .app-ads-link:hover {
+            color: #fff;
+        }
+
+        /* --- Media Queries (Mobile Responsiveness) --- */
+        @media (max-width: 768px) {
+            .hero {
+                height: 300px;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about h3, .screenshots h3 {
+                font-size: 1.5rem;
+            }
+
+            .screenshot-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2x2 grid σε κινητό */
+            }
+        }
+    </style>
+</head>
+<body onload="setLanguage('el')"> <header>
+        <div class="container header-content">
+            <div class="logo-group">
+                <img src="images/logo.jpg" alt="AutoMotoLog Logo" class="logo">
+                <h1>AutoMotoLog</h1>
+            </div>
+            <div class="lang-switcher">
+                <button id="lang-el" class="lang-btn active" onclick="setLanguage('el')">ΕΛ</button>
+                <button id="lang-en" class="lang-btn" onclick="setLanguage('en')">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <img src="images/feature-graphic.jpg" alt="AutoMotoLog Background" class="hero-img">
+            <div class="hero-text-content">
+                <h2 data-translate="heroTitle">Οργάνωσε το όχημά σου χωρίς άγχος</h2>
+                <p data-translate="heroSub">Ξέχνα το άγχος για το service, το ΚΤΕΟ και τα έξοδα. Απλοποίησε τη συντήρηση του οχήματός σου σήμερα.</p>
+                <a href="URL_TO_YOUR_PLAY_STORE_PAGE" class="btn-download" data-translate="heroBtn">Κατέβασε την εφαρμογή</a>
+            </div>
+        </section>
+
+        <section class="section container about">
+            <h3 data-translate="aboutTitle">Τι κερδίζεις</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚗</div>
+                    <h4 data-translate="f1Title">Έξυπνο Dashboard</h4>
+                    <p data-translate="f1Desc">Δες όλα τα ανταλλακτικά που πλησιάζουν στο όριο ζωής τους, όχι μόνο το επόμενο service.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h4 data-translate="f2Title">Υπενθυμίσεις Εγγράφων</h4>
+                    <p data-translate="f2Desc">Χρωματικές ειδοποιήσεις για να μην ξεχάσεις ποτέ ΚΤΕΟ και Ασφάλεια.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💸</div>
+                    <h4 data-translate="f3Title">Αναλυτικά Έξοδα</h4>
+                    <p data-translate="f3Desc">Ξεχωριστή καταγραφή κόστους ανταλλακτικού και εργασίας για να ξέρεις πού πηγαίνουν τα χρήματά σου.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h4 data-translate="f4Title">Υποστήριξη Ηλεκτρικών</h4>
+                    <p data-translate="f4Desc">Πλήρης παρακολούθηση (EV) με μετρήσεις σε kWh και ειδικά φίλτρα ανταλλακτικών.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section screenshots">
+            <div class="container">
+                <h3 data-translate="screenTitle">Δες την εφαρμογή στην πράξη</h3>
+                <div class="screenshot-grid">
+                    <img src="images/1.jpg" alt="Screenshot 1" class="screenshot-img">
+                    <img src="images/2.jpg" alt="Screenshot 2" class="screenshot-img">
+                    <img src="images/3.jpg" alt="Screenshot 3" class="screenshot-img">
+                    <img src="images/4.jpg" alt="Screenshot 4" class="screenshot-img">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 AutoMotoLog. All rights reserved.</p>
+            <p data-translate="footerDev">Αναπτύχθηκε με ❤️ στην Ελλάδα</p>
+            <p>
+                <a href="app-ads.txt" class="app-ads-link">AdMob Verification (app-ads.txt)</a>
+            </div>
+        </footer>
+    
+        <script>
+            /* --- JAVASCRIPT --- */
+            const translations = {
+                'el': {
+                    'heroTitle': 'Οργάνωσε το όχημά σου χωρίς άγχος',
+                    'heroSub': 'Ξέχνα το άγχος για το service, το ΚΤΕΟ και τα έξοδα. Απλοποίησε τη συντήρηση του οχήματός σου σήμερα.',
+                    'heroBtn': 'Κατέβασε την εφαρμογή στο Play Store',
+                    'aboutTitle': 'Τι κερδίζεις στην πράξη',
+                    'f1Title': 'Έξυπνο Dashboard',
+                    'f1Desc': 'Δες όλα τα ανταλλακτικά που πλησιάζουν στο όριο ζωής τους, όχι μόνο το επόμενο service.',
+                    'f2Title': 'Υπενθυμίσεις Εγγράφων',
+                    'f2Desc': 'Χρωματικές ειδοποιήσεις για να μην ξεχάσεις ποτέ ΚΤΕΟ και Ασφάλεια.',
+                    'f3Title': 'Αναλυτικά Έξοδα',
+                    'f3Desc': 'Ξεχωριστή καταγραφή κόστους ανταλλακτικού και εργασίας για να ξέρεις πού πηγαίνουν τα χρήματά σου.',
+                    'f4Title': 'Υποστήριξη Ηλεκτρικών (EV)',
+                    'f4Desc': 'Πλήρης παρακολούθηση με μετρήσεις σε kWh και ειδικά φίλτρα ανταλλακτικών.',
+                    'screenTitle': 'Δες την εφαρμογή στην πράξη',
+                    'footerDev': 'Αναπτύχθηκε με ❤️ στην Ελλάδα'
+                },
+                'en': {
+                    'heroTitle': 'Organize Your Vehicle Without Stress',
+                    'heroSub': 'Forget worrying about service dates, MOT (KTEO), and costs. Simplify your vehicle maintenance today.',
+                    'heroBtn': 'Download on Google Play',
+                    'aboutTitle': 'What You Get',
+                    'f1Title': 'Smart Dashboard',
+                    'f1Desc': 'See all parts that are nearing their end of life, not just the next service.',
+                    'f2Title': 'Document Reminders',
+                    'f2Desc': 'Color-coded alerts so you never forget MOT (KTEO) and Insurance.',
+                    'f3Title': 'Detailed Costs',
+                    'f3Desc': 'Separate tracking of parts and labor costs to know exactly where your money goes.',
+                    'f4Title': 'Electric Vehicle Support',
+                    'f4Desc': 'Full (EV) tracking with measurements in kWh and special parts filters.',
+                    'screenTitle': 'See the App in Action',
+                    'footerDev': 'Developed with ❤️ in Greece'
+                }
+            };
+    
+            function setLanguage(lang) {
+                // Ενημέρωση κειμένων
+                document.querySelectorAll('[data-translate]').forEach(el => {
+                    const key = el.getAttribute('data-translate');
+                    if (translations[lang] && translations[lang][key]) {
+                        el.innerText = translations[lang][key];
+                    }
+                });
+    
+                // Ενημέρωση κουμπιών
+                document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+                document.getElementById(`lang-${lang}`).classList.add('active');
+    
+                // Ενημέρωση title σελίδας
+                if (lang === 'el') {
+                    document.title = "AutoMotoLog - Οργάνωσε το όχημά σου χωρίς άγχος";
+                } else {
+                    document.title = "AutoMotoLog - Organize Your Vehicle Without Stress";
+                }
+            }
+        </script>
+    </body>
+    </html>
