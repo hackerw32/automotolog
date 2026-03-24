@@ -154,20 +154,6 @@ header {
     padding: 100px 24px 110px;
 }
 
-.hero-bg {
-    position: absolute;
-    inset: 0;
-    background-image: url('../images/feature-graphic.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.12;
-}
-
-.hero-gradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(11, 22, 40, 0.95) 0%, rgba(17, 30, 53, 0.85) 100%);
-}
 
 .hero-inner {
     position: relative;
