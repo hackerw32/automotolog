@@ -108,12 +108,21 @@
             left: 0;
         }
 
-        .hero-text-content {
+.hero-text-content {
             position: relative;
             z-index: 10;
             text-align: center;
             color: #fff;
-            padding: 20px;
+            padding: 40px; /* Αυξήσαμε λίγο το padding */
+            
+            /* --- ΟΙ ΝΕΕΣ ΠΡΟΣΘΗΚΕΣ ΕΔΩ --- */
+            background-color: rgba(0, 0, 0, 0.6); /* Σκούρο διαφανές φόντο */
+            backdrop-filter: blur(8px); /* Ελαφρύ θόλωμα της εικόνας από πίσω */
+            -webkit-backdrop-filter: blur(8px); /* Για υποστήριξη σε Safari */
+            border-radius: 16px; /* Στρογγυλεμένες γωνίες */
+            max-width: 800px; /* Περιορίζει το πλάτος του πλαισίου */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Λεπτό, διαφανές περίγραμμα */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Σκιά για βάθος */
         }
 
         .hero h2 {
